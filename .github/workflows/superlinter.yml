@@ -32,7 +32,7 @@ jobs:
    
     steps:
       - name: Rodando outro script novamente
-        run: echo "${{ jobs.my-fisrt-job.steps.my_id.outputs.my_info }}"
+        run: echo "${{ needs.my-fisrt-job.steps.my_id.outputs.my_info }}"
           
       - name: Rodando outro script de novo novamente mais uma vez :-p
         run: |
