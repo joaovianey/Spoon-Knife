@@ -7,21 +7,41 @@ jobs:
     name: Meu Primeiro Job
     runs-on: ubuntu-latest
     
+    env:
+      MY_VAR: Eita
+    
     steps:
       - name: Rodando meu script
         run: |
-          export VAR1=Hello
+          echo "Olá mundo!"
           
       - name: Rodando meu script
         run: |
-          echo "VAR1=$VAR1"
-          echo Vish...
-          echo funciona! :-D 
+          echo "$MY_VAR ... funciona!"
+          echo ":-D"
+          
+      - name: Teste para compartilhar info entre Jobs
+        id: my_id
+        run: echo "::set-output name=my_info::hahahaha. Funciona mesmo!"
+
+          
+  my-second-job:
+    name: Meu Segundo Job
+    runs-on: ubuntu-latest
+    needs: my-fisrt-job
+   
+    steps:
+      - name: Rodando outro script novamente
+        run: echo "${{ jobs.my-fisrt-job.steps.my_id.outputs.my_info }}"
+          
+      - name: Rodando outro script de novo novamente mais uma vez :-p
+        run: |
+          echo "\o/ Yeah!"
   
   super-lint:
     name: Lint code base
     runs-on: ubuntu-latest
-    needs: my-fisrt-job
+    needs: my-second-job
 
     steps:
       - name: Checkout code
