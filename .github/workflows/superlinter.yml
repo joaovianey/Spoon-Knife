@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     
     outputs:
-      info1: ${{ steps.step1.outputs.my_var }}
+      info1: ${{ steps.my_id.outputs.my_info }}
     
     env:
       MY_VAR: Eita
@@ -25,7 +25,7 @@ jobs:
 
       - name: Teste para compartilhar info entre Jobs
         id: my_id
-        run: echo "::set-output name=my_var::hahahaha Funciona mesmo!"
+        run: echo "::set-output name=my_info::hahahaha Funciona mesmo!"
 
           
   my-second-job:
