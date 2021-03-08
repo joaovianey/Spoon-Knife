@@ -1,19 +1,29 @@
-name: Super-Linter
+name: GitHub-Action-Example
 
-# Run this workflow every time a new commit pushed to your repository
 on: push
 
 jobs:
-  # Set the job key. The key is displayed as the job name
-  # when a job name is not provided
-  super-lint:
-    # Name the Job
-    name: Lint code base
-    # Set the type of machine to run on
+  my-fisrt-job:
+    name: Meu Primeiro Job
     runs-on: ubuntu-latest
+    
+    steps:
+      - name: Rodando meu script
+        run: |
+          export VAR1=Hello
+          
+      - name: Rodando meu script
+        run: |
+          echo "VAR1=$VAR1"
+          echo Vish...
+          echo funciona! :-D 
+  
+  super-lint:
+    name: Lint code base
+    runs-on: ubuntu-latest
+    needs: my-fisrt-job
 
     steps:
-      # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
         uses: actions/checkout@v2
 
